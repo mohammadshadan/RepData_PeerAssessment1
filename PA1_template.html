@@ -333,10 +333,14 @@ amean_new &lt;- mean(aggsteps_new$steps)
 amedian_new &lt;- median(aggsteps_new$steps)
 
 #Comparing Means
-paste(&quot;New Mean      :&quot;, round(amean_new,2), &quot;,&quot; ,  &quot; Original Mean :&quot;, round(amean,2),&quot;,&quot; , &quot; Difference :&quot;,round(amean_new,2) -  round(amean,2))</code></pre>
+paste(&quot;New Mean      :&quot;, round(amean_new,2), &quot;,&quot; ,  
+      &quot; Original Mean :&quot;, round(amean,2),&quot;,&quot; , 
+      &quot; Difference :&quot;,round(amean_new,2) -  round(amean,2))</code></pre>
 <pre><code>## [1] &quot;New Mean      : 10766.19 ,  Original Mean : 10766.19 ,  Difference : 0&quot;</code></pre>
 <pre class="r"><code>#Comparing Medians
-paste(&quot;New Median    :&quot;, amedian_new, &quot;,&quot;, &quot; Original Median :&quot;, amedian,&quot;,&quot; , &quot; Difference :&quot;,round(amedian_new-amedian,2))</code></pre>
+paste(&quot;New Median    :&quot;, amedian_new, &quot;,&quot;, 
+      &quot; Original Median :&quot;, amedian,&quot;,&quot; , 
+      &quot; Difference :&quot;,round(amedian_new-amedian,2))</code></pre>
 <pre><code>## [1] &quot;New Median    : 10766.1886792453 ,  Original Median : 10765 ,  Difference : 1.19&quot;</code></pre>
 </div>
 <div id="the-mean-are-same-but-new-median-differs-from-original-median-by-1.19" class="section level4">
@@ -377,7 +381,7 @@ head(anew)</code></pre>
 ## 6 0.000000 2012-11-15        0   weekday</code></pre>
 </div>
 <div id="make-a-panel-plot-containing-a-time-series-plot-i.e.-type-l-of-the-5-minute-interval-x-axis-and-the-average-number-of-steps-taken-averaged-across-all-weekday-days-or-weekend-days-y-axis.-the-plot-should-look-something-like-the-following-which-was-created-using-simulated-data" class="section level4">
-<h4>1. Make a panel plot containing a time series plot (i.e. <code>type = &quot;l&quot;</code>) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using <strong>simulated data</strong>:</h4>
+<h4>2. Make a panel plot containing a time series plot (i.e. <code>type = &quot;l&quot;</code>) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using <strong>simulated data</strong>:</h4>
 <pre class="r"><code>#Aggregating(mean) steps over interval and day of week
 meaninterval_new&lt;- aggregate(steps ~ interval + dayofweek, anew, FUN=mean)
 
