@@ -273,7 +273,9 @@ amean_new <- mean(aggsteps_new$steps)
 amedian_new <- median(aggsteps_new$steps)
 
 #Comparing Means
-paste("New Mean      :", round(amean_new,2), "," ,  " Original Mean :", round(amean,2),"," , " Difference :",round(amean_new,2) -  round(amean,2))
+paste("New Mean      :", round(amean_new,2), "," ,  
+      " Original Mean :", round(amean,2),"," , 
+      " Difference :",round(amean_new,2) -  round(amean,2))
 ```
 
 ```
@@ -282,7 +284,9 @@ paste("New Mean      :", round(amean_new,2), "," ,  " Original Mean :", round(am
 
 ```r
 #Comparing Medians
-paste("New Median    :", amedian_new, ",", " Original Median :", amedian,"," , " Difference :",round(amedian_new-amedian,2))
+paste("New Median    :", amedian_new, ",", 
+      " Original Median :", amedian,"," , 
+      " Difference :",round(amedian_new-amedian,2))
 ```
 
 ```
@@ -343,7 +347,7 @@ head(anew)
 ## 6 0.000000 2012-11-15        0   weekday
 ```
 
-####1. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
+####2. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
 
 
 
