@@ -231,7 +231,7 @@ amedian</code></pre>
 <pre class="r"><code>#Aggregating(summation) of steps over time interval (of 5 min)
 agginterval &lt;- aggregate(steps ~ interval, a, FUN=sum)
 
-#Plotting line graph using plot() from Base Plotting for Total Steps vs. 5-Minute Interval
+#Plotting line graph using plot() from Base Plotting for Total Steps vs 5-Minute Interval
 plot(agginterval$interval, agginterval$steps, 
      type = &quot;l&quot;, lwd = 2,
      xlab = &quot;Interval&quot;, 
