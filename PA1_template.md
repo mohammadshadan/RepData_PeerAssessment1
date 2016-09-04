@@ -146,12 +146,12 @@ amedian
 #Aggregating(summation) of steps over time interval (of 5 min)
 agginterval <- aggregate(steps ~ interval, a, FUN=sum)
 
-#Plotting line graph using plot() from Base Plotting for Total Steps vs. 5-Mintute Interval
+#Plotting line graph using plot() from Base Plotting for Total Steps vs. 5-Minute Interval
 plot(agginterval$interval, agginterval$steps, 
      type = "l", lwd = 2,
      xlab = "Interval", 
      ylab = "Total Steps",
-     main = "Total Steps vs. 5-Mintute Interval")
+     main = "Total Steps vs. 5-Minute Interval")
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
