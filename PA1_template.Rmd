@@ -38,7 +38,7 @@ The variables included in this dataset are:
 
 ### Loading and preprocessing the data
 
-```{r}
+```{r, echo=TRUE}
 #Set the Working Directory e.g.
 #setwd("~/GitHub/RepData_PeerAssessment1")
 
@@ -54,12 +54,12 @@ library(chron)   #Used for is.weekend() function
 ```
 
 ####1. Load the data (i.e. `read.csv()`)
-```{r}
+```{r, echo=TRUE}
 a <- read.csv("activity.csv", header = TRUE)
 
 ```
 ####2. Process/transform the data (if necessary) into a format suitable for your analysis
-```{r}
+```{r, echo=TRUE}
 head(a)
 ```
 ### What is mean total number of steps taken per day?
@@ -68,7 +68,7 @@ For this part of the assignment, you can ignore the missing values in
 the dataset.
 
 ####1. Make a histogram of the total number of steps taken each day
-```{r}
+```{r, echo=TRUE}
 #Aggregating(summation) of steps over date
 aggsteps<- aggregate(steps ~ date, a, FUN=sum)
 
@@ -86,7 +86,7 @@ hist(aggsteps$steps,
 
 ####2. Calculate and report the **mean** and **median** total number of steps taken per day
 
-```{r}
+```{r, echo=TRUE}
 amean <- mean(aggsteps$steps)
 amedian <- median(aggsteps$steps)
 
@@ -98,14 +98,14 @@ amedian
 
 ```
 
-**Mean** and **Median** total number of steps taken per day are **10766.19** and **10765** respectively. 
+####**Mean** and **Median** total number of steps taken per day are **10766.19** and **10765** respectively. 
 
 
 ### What is the average daily activity pattern?
 
 ####1. Make a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r}
+```{r, echo=TRUE}
 #Aggregating(summation) of steps over time interval (of 5 min)
 agginterval <- aggregate(steps ~ interval, a, FUN=sum)
 
@@ -119,12 +119,12 @@ plot(agginterval$interval, agginterval$steps,
 ```
 
 ####2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
-```{r}
+```{r, echo=TRUE}
 #Fetching the 5 min interval which has maximum number of steps
 filter(agginterval, steps==max(steps))
 
 ```
-Maximum number of steps (10927 steps) happened in 835th 5-min interval
+####Maximum number of steps (10927 steps) happened in 835th 5-min interval
 
 ### Imputing missing values
 
@@ -133,15 +133,15 @@ values (coded as `NA`). The presence of missing days may introduce
 bias into some calculations or summaries of the data.
 
 ####1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with `NA`s)
-```{r}
+```{r, echo=TRUE}
 #In the Output of the below query TRUE represents the total number of NA values
 table(is.na(a))
 
 ```
-The total number of rows with `NA`s are 2304
+####The total number of rows with `NA`s are 2304
 
 ####2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
-```{r}
+```{r, echo=TRUE}
 #In the original data set aggregating (mean) steps over 5-minute interval
 meaninterval<- aggregate(steps ~ interval, a, FUN=mean)
 
@@ -157,7 +157,7 @@ head(anew)
 ```
 ####3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
-```{r}
+```{r, echo=TRUE}
 #Fetching only the required columns (steps, date, interval) and storing in the new data set.
 anew <- select(anew, steps, date, interval)
 
@@ -166,7 +166,7 @@ head(anew)
 ```
 
 ####4. Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
-```{r}
+```{r, echo=TRUE}
 
 #Aggregating(summation) of steps over date
 aggsteps_new<- aggregate(steps ~ date, anew, FUN=sum)
@@ -195,17 +195,17 @@ hist(aggsteps$steps,
 
 par(mfrow=c(1,1)) #Resetting the panel
 
-amean_new <- mean(aggsteps$steps)
-amedian_new <- median(aggsteps$steps)
+amean_new <- mean(aggsteps_new$steps)
+amedian_new <- median(aggsteps_new$steps)
 
 #Comparing Means
-paste("New Mean      :", round(amean_new,2), "," ,  "     Original Mean :", amean)
+paste("New Mean      :", round(amean_new,2), "," ,  " Original Mean :", round(amean,2),"," , " Difference :",round(amean_new,2) -  round(amean,2))
 
 #Comparing Medians
-paste("New Median    :", round(amedian_new,2), ",", "   Original Median :", amedian)
+paste("New Median    :", amedian_new, ",", " Original Median :", amedian,"," , " Difference :",round(amedian_new-amedian,2))
 
 ```
-The Mean and Median for Original and New Datasets are same.
+####The Mean are same but New Median differs from Original Median by **1.19**
 
 
 ### Are there differences in activity patterns between weekdays and weekends?
@@ -214,7 +214,7 @@ For this part the `weekdays()` function may be of some help here. Use
 the dataset with the filled-in missing values for this part.
 
 ####1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
-```{r}
+```{r, echo=TRUE}
 #Below code will use "chron" package, please install if not alrady installed
 #install.packages("chron")
 #library(chron)
@@ -236,7 +236,7 @@ head(anew)
 ####1. Make a panel plot containing a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
 
 
-```{r}
+```{r, echo=TRUE}
 
 #Aggregating(mean) steps over interval and day of week
 meaninterval_new<- aggregate(steps ~ interval + dayofweek, anew, FUN=mean)
@@ -249,6 +249,11 @@ ggplot(meaninterval_new, aes(x=interval, y=steps)) +
   geom_line(color="blue", size=1) + 
   facet_wrap(~dayofweek, nrow=2) +
   labs(x="\nInterval", y="\nNumber of steps")
+```
+
+```{r}
+#library(knitr)
+#knit("PA1_template.Rmd")
 ```
 
 ##THANK YOU
